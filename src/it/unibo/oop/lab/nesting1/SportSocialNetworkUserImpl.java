@@ -53,12 +53,12 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * TODO: initialize properly these sports
      */
     static {
-        SOCCER = null;
-        F1 = null;
-        MOTOGP = null;
-        VOLLEY = null;
-        BASKET = null;
-        BIKE = null;
+        SOCCER = new Sport();
+        F1 = new Sport();
+        MOTOGP = new Sport();
+        VOLLEY = new Sport();
+        BASKET = new Sport();
+        BIKE = new Sport();
     }
 
     /**
@@ -114,7 +114,9 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      */
     // TODO
     public void addSport(final Sport sport) {
-
+    	if(!this.sports.contains(sport)) {
+    		this.sports.add(sport);
+    	}
     }
 
     /**
@@ -126,7 +128,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      */
     // TODO
     public boolean hasSport(final Sport s) {
-        return false;
+    	return this.sports.contains(s);
     }
 
     /*
@@ -134,17 +136,73 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * 
      * Complete the definition of this static inner class defining a Sport along
      * with its bare name.
+     * 
+     * 
      */
-    public static final class Sport {
-        /*
-         * TODO
-         * 
-         * Redefine equals so that two sports are equal only if they feature the
-         * very same name. Remember that you must also redefine hashCode()!
-         */
-        @Override
-        public boolean equals(final Object o) {
-            return false;
+    
+    private static final class Sport{
+    	
+    	public Sport Soccer = SportSocialNetworkUserImpl.SOCCER;
+    	public Sport F1 = SportSocialNetworkUserImpl.F1;
+    	public Sport MotoGp = SportSocialNetworkUserImpl.MOTOGP;
+    	public Sport Volley = SportSocialNetworkUserImpl.VOLLEY;
+    	public Sport Basket = SportSocialNetworkUserImpl.BASKET;
+    	public Sport Bike = SportSocialNetworkUserImpl.BIKE;
+    	
+        public Sport() {
         }
+		
+        public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((Basket == null) ? 0 : Basket.hashCode());
+			result = prime * result + ((Bike == null) ? 0 : Bike.hashCode());
+			result = prime * result + ((F1 == null) ? 0 : F1.hashCode());
+			result = prime * result + ((MotoGp == null) ? 0 : MotoGp.hashCode());
+			result = prime * result + ((Soccer == null) ? 0 : Soccer.hashCode());
+			result = prime * result + ((Volley == null) ? 0 : Volley.hashCode());
+			return result;
+		}
+		
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Sport other = (Sport) obj;
+			if (Basket == null) {
+				if (other.Basket != null)
+					return false;
+			} else if (!Basket.equals(other.Basket))
+				return false;
+			if (Bike == null) {
+				if (other.Bike != null)
+					return false;
+			} else if (!Bike.equals(other.Bike))
+				return false;
+			if (F1 == null) {
+				if (other.F1 != null)
+					return false;
+			} else if (!F1.equals(other.F1))
+				return false;
+			if (MotoGp == null) {
+				if (other.MotoGp != null)
+					return false;
+			} else if (!MotoGp.equals(other.MotoGp))
+				return false;
+			if (Soccer == null) {
+				if (other.Soccer != null)
+					return false;
+			} else if (!Soccer.equals(other.Soccer))
+				return false;
+			if (Volley == null) {
+				if (other.Volley != null)
+					return false;
+			} else if (!Volley.equals(other.Volley))
+				return false;
+			return true;
+		}
     }
 }
